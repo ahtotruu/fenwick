@@ -14,7 +14,7 @@ void fenwick_init(int a[], int n) {
 /* Increment the i-th element in the n-element Fenwick tree by d. */
 void fenwick_inc(int a[], int n, int i, int d) {
 	a[i] += d;
-	for (int m = 1; m < n; m <<= 1) {
+	for (int m = 1; i + m < n; m <<= 1) {
 		if ((i & m) == 0) {
 			i += m;
 			a[i] += d;

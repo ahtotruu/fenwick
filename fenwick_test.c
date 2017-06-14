@@ -8,8 +8,8 @@
 #define MAXN 100
 #define MAXA 100
 
-int a[MAXN]; /* An array containing the Fenwick tree. */
-int b[MAXN]; /* A plain array for reference. */
+int *a; /* An array containing the Fenwick tree. */
+int *b; /* A plain array for reference. */
 
 /* Sum the first k elements of the plain array b. */
 int array_sum(int k) {
@@ -35,6 +35,9 @@ void check(int n) {
 int main() {
 	/* Test all array sizes 0..MAXN. */
 	for (int n = 0; n <= MAXN; ++n) {
+		/* Allocate exact amount of memory, to help detect out-of-bounds accesses. */
+		a = (int *)calloc(n, sizeof(int));
+		b = (int *)calloc(n, sizeof(int));
 		/* Fill two arrays with the same random data. */
 		for (int i = 0; i < n; ++i) {
 			a[i] = b[i] = rand() % MAXA;
@@ -61,6 +64,9 @@ int main() {
 		for (int i = 0; i < n; ++i) {
 			assert(a[i] == b[i]);
 		}
+		/* Release allocated memory before next iteration. */
+		free(a);
+		free(b);
 	}
 	return 0;
 }
