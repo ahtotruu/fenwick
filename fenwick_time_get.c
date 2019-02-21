@@ -39,7 +39,7 @@ int main() {
 		}
 		tb = clock() - tb;
 		/* Results. */
-		printf("N = %d, tree: %d, array: %d, ratio, %lf\n", n, ta, tb, (double) ta / (double) tb);
+		printf("N = %d, check: %d, tree: %d, array: %d, ratio: %lf\n", n, sa == sb, ta, tb, (double) ta / (double) tb);
 	}
 	return 0;
 }
